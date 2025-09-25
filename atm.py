@@ -189,7 +189,7 @@ class Withdraw(tk.Frame):
         bottom_frame.pack(side="bottom", fill="x", pady=20)
         
         def tick():
-            current_time = time.strftime('%I:%M %p')
+            current_time = time.strftime('%I:%M%p')
             clock_label.config(text=current_time)
             clock_label.after(200, tick)
             
@@ -212,7 +212,7 @@ class Deposit(tk.Frame):
         bottom_frame.pack(side="bottom", fill="x", pady=20)
         
         def tick():
-            current_time = time.strftime('%I:%M %p')
+            current_time = time.strftime('%I:%M%p')
             clock_label.config(text=current_time)
             clock_label.after(200, tick)
             
@@ -235,7 +235,7 @@ class Balance(tk.Frame):
         bottom_frame.pack(side="bottom", fill="x", pady=20)
         
         def tick():
-            current_time = time.strftime('%I:%M %p')
+            current_time = time.strftime('%I:%M%p')
             clock_label.config(text=current_time)
             clock_label.after(200, tick)
             
