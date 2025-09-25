@@ -19,7 +19,6 @@ class SampleApp(tk.Tk):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
-            
             frame.grid(row=0, column=0, sticky="nsew")
             
         self.show_frame("StartPage")
@@ -32,12 +31,13 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, bg="aqua")
         self.controller = controller
+        
         self.controller.title("HEB ATM")
         self.controller.size="zoomed"
+        
         self.controller.iconphoto(False, tk.PhotoImage(file='atm.png'))
         
         h1 = tk.Label(self, text="Welcome to HEB ATM", font=('Helvetica', 45, 'bold'), bg="blue", fg="white")
-        
         h1.pack(side="top", fill="x", pady=25)
         
         space_label = tk.Label(self, height = 4, bg="aqua")
@@ -52,9 +52,12 @@ class StartPage(tk.Frame):
         my_pin = tk.StringVar()
         pin_entry = tk.Entry(self, textvariable=my_pin, font=('Helvetica', 14), width=20, show="*")
         pin_entry.focus()
-        pin_entry.pack()
+        pin_entry.pack(ipady=7)
         
-        pin_entry.bind('<Return>', lambda event: enter_button.invoke())
+        def handle_focus_in(_):
+            pin_entry.configure(fg='black', show="*")
+        
+        pin_entry.bind('<FocusIn>', handle_focus_in)
         
         def check_pin():
             pin = my_pin.get()
@@ -74,7 +77,7 @@ class StartPage(tk.Frame):
         bottom_frame.pack(side="bottom", fill="x", pady=20)
         
         def tick():
-            current_time = time.strftime('%I:%M %p')
+            current_time = time.strftime('%I:%M%p')
             clock_label.config(text=current_time)
             clock_label.after(200, tick)
             
