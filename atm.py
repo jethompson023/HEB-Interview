@@ -149,28 +149,38 @@ class Withdraw(tk.Frame):
         twenty_button.grid(row=0, column=0, pady=5, padx=10)
         
         forty_button = tk.Button(button_frame, text="$40", relief="raised", borderwidth=3, width=20, height=5)
-        forty_button.grid(row=0, column=1, pady=5, padx=10)
+        forty_button.grid(row=1, column=0, pady=5, padx=10)
         
         sixty_button = tk.Button(button_frame, text="$60", relief="raised", borderwidth=3, width=20, height=5)
-        sixty_button.grid(row=1, column=0, pady=5, padx=10)
+        sixty_button.grid(row=2, column=0, pady=5, padx=10)
         
         eighty_button = tk.Button(button_frame, text="$80", relief="raised", borderwidth=3, width=20, height=5)
-        eighty_button.grid(row=1, column=1, pady=5, padx=10)
+        eighty_button.grid(row=3, column=0, pady=5, padx=10)
         
         hundred_button = tk.Button(button_frame, text="$100", relief="raised", borderwidth=3, width=20, height=5)
-        hundred_button.grid(row=1, column=2, pady=5, padx=10)
+        hundred_button.grid(row=0, column=1, pady=5, padx=10)
+        
+        hundred_twenty_button = tk.Button(button_frame, text="$120", relief="raised", borderwidth=3, width=20, height=5)
+        hundred_twenty_button.grid(row=1, column=1, pady=5, padx=10)
         
         hundred_fifty_button = tk.Button(button_frame, text="$150", relief="raised", borderwidth=3, width=20, height=5)
-        hundred_fifty_button.grid(row=1, column=2, pady=5, padx=10)
+        hundred_fifty_button.grid(row=2, column=1, pady=5, padx=10)
         
-        two_hundred_button = tk.Button(button_frame, text="$200", relief="raised", borderwidth=3, width=20, height=5)
-        two_hundred_button.grid(row=1, column=2, pady=5, padx=10)
+        hundred_eighty_button = tk.Button(button_frame, text="$180", relief="raised", borderwidth=3, width=20, height=5)
+        hundred_eighty_button.grid(row=2, column=1, pady=5, padx=10)
         
         
         cash = tk.StringVar()
-        other_entry = tk.Entry(button_frame, textvariable=cash, font=('Helvetica', 14), width=20)
-        other_entry.grid(row=2, column=2, pady=5, padx=10)
+        other_entry = tk.Entry(button_frame, textvariable=cash, font=('Helvetica', 14), width=59, justify="right")
+        other_entry.grid(row=3, column=1, pady=5, ipady=30)
         other_entry.insert(0, "Other Amount")
+        
+        def other_amount(_):
+            global current_balance
+            current_balance -= int(cash.get())
+            cash.set('')
+            controller.show_frame("MenuPage")
+        other_entry.bind('<Return>', other_amount)
         
         bottom_frame = tk.Frame(self, bg="white", borderwidth=20)
         bottom_frame.pack(side="bottom", fill="x", pady=20)
