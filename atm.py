@@ -180,7 +180,7 @@ class Withdraw(tk.Frame):
             current_balance -= int(cash.get())
             cash.set('')
             controller.show_frame("MenuPage")
-        other_entry.bind('<Return>', other_amount)
+        
         
         bottom_frame = tk.Frame(self, bg="white", borderwidth=20)
         bottom_frame.pack(side="bottom", fill="x", pady=20)
